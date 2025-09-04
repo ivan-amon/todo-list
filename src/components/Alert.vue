@@ -11,7 +11,7 @@
 
 <script>
 
-import IconBtn from '../buttons/IconBtn.vue';
+import IconBtn from './buttons/IconBtn.vue';
 
 export default {
 

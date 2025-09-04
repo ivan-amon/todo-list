@@ -25,7 +25,7 @@
 
 <script>
 
-import Btn from './../ui/Btn.vue';
+import Btn from './buttons/Btn.vue';
 
 export default {
 
