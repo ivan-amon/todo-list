@@ -10,9 +10,12 @@
   --color-accent-400: #42D392;
   --color-gradient-500: #5F8BEE;
   --color-gradient-400: #6A9CFA;
-  --color-danger-600: #B72833;
-  --color-danger-500: #ff1100; 
-  --color-danger-400: #ff4d4d; 
+  --color-gradient-300: #86d1ff;
+  --color-danger-500: #ff0015;
+  --color-danger-400: #ff2c2c;
+  /* --color-danger-400: #ff5f29; */
+  --color-warning-500: #ff9d00;
+  --color-warning-400: #ffda52;
 
   --font-sans: "Fira Sans", system-ui, sans-serif;
 }
@@ -37,26 +40,33 @@
 @layer components {
 
   .btn {
-    @apply py-3 px-8 rounded-md bg-gradient-to-r from-[#41B883] to-[#5F8BEE];
+    @apply rounded-md cursor-pointer;
+    @apply bg-gradient-to-r
+       from-[var(--color-accent-500)] to-[var(--color-gradient-500)];
   }
   .btn:hover {
-    @apply bg-gradient-to-r from-[#42D392] to-[#6A9CFA];
+    @apply bg-gradient-to-r
+       from-[var(--color-accent-400)] to-[var(--color-gradient-400)];
   }
 
   .btn-danger {
-    @apply py-2 rounded-md text-xl text-danger-500 outline-none;
+    @apply py-2 rounded-md text-xl text-danger-500 outline-none cursor-pointer;
   }
-  .btn-danger:hover , .btn-danger:focus {
-    transform: scale(1.2);
+  .btn-danger:hover, .btn-danger:focus {
+    @apply scale-120
   }
   
-
   .todo {
     @apply py-2 px-6 flex justify-between items-center bg-primary-400 rounded-md
   }
 
   .todo-input {
     @apply block w-full rounded-md border-0 bg-white px-3 py-2 text-black outline-none
+  }
+
+  .alert {
+    @apply flex justify-between items-center;
+    @apply cursor-default py-1 px-4 rounded-md bg-primary-400;
   }
 
   .text-user {
@@ -86,17 +96,21 @@
   }
 
   .text-gradient {
-    @apply bg-clip-text text-transparent bg-gradient-to-r from-[#41B883] to-[#5F8BEE];
+    @apply bg-clip-text text-transparent;
+    @apply bg-gradient-to-r
+       from-[var(--color-accent-500)] to-[var(--color-gradient-500)];
   }
 
   .text-magic {
     @apply text-white transition;
   }
   .text-magic:hover {
-    @apply bg-clip-text text-transparent bg-gradient-to-r from-[#42D392] to-[#6A9CFA];
+    @apply bg-clip-text text-transparent bg-gradient-to-r
+       from-[var(--color-accent-400)] to-[var(--color-gradient-400)];
   }
 
   .border-gradient {
-    @apply p-[3px] rounded-md bg-gradient-to-r from-[#41B883] to-[#5F8BEE];
+    @apply p-[3px] rounded-md bg-gradient-to-r
+       from-[var(--color-accent-500)] to-[var(--color-gradient-500)];
   }
 }
