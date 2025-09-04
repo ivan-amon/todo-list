@@ -5,32 +5,24 @@
       <Alert
         :show="showAlert"
         message="Todo title is required!"
-        type="warning"
+        type="danger"
         @close="showAlert = false"
       />
       <AddTodoForm @submitTodo="addTodo" />
-      <ul class="gap-5 flex flex-col">
-        <Todo
-          v-for="(todo, index) in todos"
-          :id="todo.id"
-          :index="index"
-          :title="todo.title"
-          @remove-todo="removeTodo"
-        />
-      </ul>
+      <TodoList/>
     </section>
   </main>
 </template>
 
 <script>
 
-import AddTodoForm from "./components/AddTodoForm.vue";
-import Alert from "./components/Alert.vue";
-import Navbar from "./components/Navbar.vue";
-import Todo from "./components/Todo.vue";
+import AddTodoForm from "./components/todos/AddTodoForm.vue";
+import Alert from "./components/ui/Alert.vue";
+import Navbar from "./components/layout/Navbar.vue";
+import Todo from "./components/todos/TodoList.vue";
 
 export default {
-  components: { Alert, Navbar, AddTodoForm, Todo },
+  components: { Alert, Navbar, AddTodoForm, TodoList },
 
   data() {
     return {

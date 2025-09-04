@@ -1,6 +1,6 @@
 <template>
   <form
-    class="mt-2 mb-12 flex flex-col justify-center items-end md:flex-row md:justify-between md:items-center"
+    class="mt-4 mb-12 flex flex-col justify-center items-end md:flex-row md:justify-between md:items-center"
   >
     <div class="border-gradient w-[100%] md:w-[70%] xl:w-[75%]">
       <input
@@ -12,19 +12,25 @@
       />
     </div>
     <div>
-      <button
-        @click.prevent="$emit('submit-todo', todoTitle)"
-        class="btn mt-6 md:mt-0 py-3 px-8 2xl:px-12"
+      <Btn
+        @click="$emit('submit-todo', todoTitle)"
+        class="btn"
         type="submit"
       >
-        Add Todo
-      </button>
+      Add Todo
+    </Btn>
     </div>
   </form>
 </template>
 
 <script>
+
+import Btn from './../ui/Btn.vue';
+
 export default {
+
+  components: { Btn },
+
   data() {
     return {
       todoTitle: "",
