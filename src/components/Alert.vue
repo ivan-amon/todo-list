@@ -11,37 +11,35 @@
 
 <script>
 export default {
-
   props: {
     message: {
       required: true,
-      type: String
+      type: String,
     },
     show: {
       required: true,
-      type: Boolean
+      type: Boolean,
     },
     type: {
       type: String,
-      default: 'danger',
+      default: "danger",
       validator(value) {
-        return ['danger', 'warning', 'info'].includes(value)
-      }
-    }
+        return ["danger", "warning", "info"].includes(value);
+      },
+    },
   },
 
   computed: {
     alertColor() {
       const colors = {
-        danger: 'border-danger-500  text-danger-500 border-2',
-        warning: 'border-warning-500  text-warning-500 border-2',
-        info: 'border-gradient-500  text-gradient-500 border-2'
-      }
-      return colors[this.type] ?? colors['danger']
-    }
+        danger: "border-danger-500  text-danger-500 border-2",
+        warning: "border-warning-500  text-warning-500 border-2",
+        info: "border-gradient-500  text-gradient-500 border-2",
+      };
+      return colors[this.type] ?? colors["danger"];
+    },
   },
 
-  emits: ['close'],
-}
+  emits: ["close"],
+};
 </script>
-
