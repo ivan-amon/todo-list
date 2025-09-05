@@ -38,34 +38,10 @@
 
 }
 
-@layer components {
-
-  .btn {
-    @apply rounded-md cursor-pointer mt-6 md:mt-0 py-3 px-8 2xl:px-12;
-  }
-  .btn:hover {
-    @apply bg-gradient-to-r
-       from-[var(--color-accent-400)] to-[var(--color-gradient-400)];
-  }
-
-  .icon-btn {
-    @apply rounded-md text-xl outline-none cursor-pointer;
-  }
-  .icon-btn:hover, .icon-btn:focus {
-    @apply scale-120
-  }
-  
-  .todo {
-    @apply py-4 px-6 flex justify-between items-center bg-primary-400 rounded-md
-  }
+@layer components { 
 
   .todo-input {
     @apply block w-full rounded-md border-0 bg-white px-3 py-2 text-black outline-none
-  }
-
-  .alert {
-    @apply flex justify-between items-center;
-    @apply cursor-default py-2 px-6 rounded-md bg-primary-400;
   }
 
   .text-user {

@@ -31,3 +31,11 @@ export default {
   emits: ['click']
 }
 </script>
+
+<style scoped>
+@reference "../../assets/style.css";
+
+.btn {
+  @apply rounded-md cursor-pointer md:mt-0 py-3 px-8 2xl:px-12;
+}
+</style>

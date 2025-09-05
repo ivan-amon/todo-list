@@ -5,7 +5,7 @@
         <img src="@/assets/logo.svg" class="w-8 md:w-10 xl:w-12" />
         <span
           class="text-gradient font-semibold text-2xl md:text-4xl self-center"
-          >Todo List</span
+          >To-Do List</span
         >
       </a>
       <a href="#" class="hidden md:block p-2 text-magic text-lg">Home</a>

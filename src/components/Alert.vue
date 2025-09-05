@@ -1,5 +1,5 @@
 <template>
-  <div v-if="show" class="py-2">
+  <div v-if="show" class="md:mt-4">
     <div :class="['alert', alertColor]">
       <p>{{ message }}</p>
       <IconBtn @click="$emit('close')" type="danger" size="small">
@@ -49,4 +49,13 @@ export default {
   emits: ['close'],
 }
 </script>
+
+<style>
+@reference "../assets/style.css";
+
+.alert {
+  @apply flex justify-between items-center;
+  @apply cursor-default py-2 px-6 rounded-md bg-primary-400;
+}
+</style>
 

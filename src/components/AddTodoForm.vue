@@ -1,6 +1,6 @@
 <template>
   <form
-    class="mt-4 mb-12 flex flex-col justify-center items-end md:flex-row md:justify-between md:items-center"
+    class="flex flex-col justify-center items-end md:flex-row md:justify-between md:items-center"
   >
     <div class="border-gradient w-[100%] md:w-[70%] xl:w-[75%]">
       <input
@@ -11,14 +11,13 @@
         id="todo"
       />
     </div>
-    <div>
+    <div class="mt-6 md:mt-0">
       <Btn
         @click="$emit('submit-todo', todoTitle)"
-        class="btn"
         type="submit"
       >
-      Add Todo
-    </Btn>
+      Add to-do
+      </Btn>
     </div>
   </form>
 </template>
