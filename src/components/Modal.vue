@@ -54,7 +54,7 @@ export default {
 }
 
 .modal-header {
-  @apply py-4 px-4 md:px-10 bg-primary-600 text-white rounded-t-xl;
+  @apply py-4 px-4 md:px-10 bg-primary-600 text-white rounded-t-lg;
 }
 
 .modal-body {
@@ -62,6 +62,6 @@ export default {
 }
 
 .modal-footer {
-  @apply flex justify-center align-middle gap-10 pb-16 pt-4 px-4 bg-primary-400 rounded-b-xl;
+  @apply flex justify-center align-middle gap-10 pb-16 pt-4 px-4 bg-primary-400 rounded-b-lg;
 }
 </style>

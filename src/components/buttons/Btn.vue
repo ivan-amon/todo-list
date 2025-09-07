@@ -36,6 +36,6 @@ export default {
 @reference "../../assets/style.css";
 
 .btn {
-  @apply rounded-md cursor-pointer md:mt-0 py-3 px-8 2xl:px-12;
+  @apply rounded-md cursor-pointer py-3 px-8 2xl:px-12;
 }
 </style>

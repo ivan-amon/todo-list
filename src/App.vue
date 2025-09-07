@@ -1,7 +1,6 @@
 <template>
   <Navbar />
   <main class="px-2 pt-5 md:pt-10 md:px-8 lg:px-20 xl:px-32 2xl:px-60">
-    
     <section class="px-6">
       <Alert
         :show="showAlert"
@@ -11,23 +10,25 @@
       />
     </section>
 
-    <Modal :show="showEditTodoModal">
-      <template v-slot:header>
-        <h2 class="text-4xl text-gradient font-semibold inline-block">Edit to-do</h2>
+    <Modal :show="editTodoForm.show">
+      <template #header>
+        <h2 class="text-4xl text-gradient font-semibold inline-block">
+          Edit to-do
+        </h2>
       </template>
-      <template v-slot:body>
+      <template #body>
         <label for="todo" class="text-xl">Title</label>
         <div class="border-gradient w-[100%] md:w-[70%] xl:w-[75%]">
-          <input type="text" class="todo-input">
+          <input
+            type="text"
+            class="todo-input"
+            v-model="editTodoForm.todo.title"
+          />
         </div>
       </template>
-      <template v-slot:footer>
-        <Btn type="submit">
-          Submit
-        </Btn>
-        <Btn @click="showEditTodoModal = false" type="danger">
-          Close
-        </Btn>
+      <template #footer>
+        <Btn @click="updateTodo" type="submit"> Submit </Btn>
+        <Btn @click="editTodoForm.show = false" type="danger"> Close </Btn>
       </template>
     </Modal>
 
@@ -43,16 +44,14 @@
           :index="index"
           :title="todo.title"
           @remove-todo="removeTodo"
-          @edit-todo="showEditTodoModal = true"
+          @edit-todo="showEditTodoForm"
         />
       </ul>
     </section>
-
   </main>
 </template>
 
 <script>
-
 import AddTodoForm from "./components/AddTodoForm.vue";
 import Alert from "./components/Alert.vue";
 import Btn from "./components/buttons/Btn.vue";
@@ -68,7 +67,13 @@ export default {
       todoTitle: "",
       todos: [],
       showAlert: false,
-      showEditTodoModal: false
+      editTodoForm: {
+        show: false,
+        todo: {
+          id: 0,
+          title: "",
+        },
+      },
     };
   },
 
@@ -89,8 +94,21 @@ export default {
       this.showAlert = false;
     },
 
+    showEditTodoForm(index) {
+      this.editTodoForm.show = true;
+      this.editTodoForm.todo = { ...this.todos[index] };
+    },
+
+    updateTodo() {
+      const todo = this.todos.find(
+        (todo) => todo.id === this.editTodoForm.todo.id
+      );
+      todo.title = this.editTodoForm.todo.title;
+      this.editTodoForm.show = false;
+    },
+
     removeTodo(todoIndex) {
-      this.todos = this.todos.filter((todo, id) => id !== todoIndex);
+      this.todos = this.todos.filter((todo, index) => index !== todoIndex);
     },
   },
 };
