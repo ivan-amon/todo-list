@@ -2,10 +2,10 @@
   <li class="todo" v-bind:key="id">
     <p>{{ title }}</p>
     <div class="flex gap-4">
-      <IconBtn @click="$emit('edit-todo', index)" type="info" size="small">
+      <IconBtn @click.prevent="$emit('edit-todo', index)" variant="info" size="small">
         <i class="bi bi-pencil-square"></i>
       </IconBtn>
-      <IconBtn @click="$emit('remove-todo', index)" type="danger" size="small">
+      <IconBtn @click.prevent="$emit('remove-todo', index)" variant="danger" size="small">
         <i class="bi bi-trash"></i>
       </IconBtn>
     </div>

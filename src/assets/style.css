@@ -38,7 +38,7 @@
 
 }
 
-@layer components { 
+@layer components {
 
   .todo-input {
     @apply block w-full rounded-md border-0 bg-white px-3 py-2 text-black outline-none

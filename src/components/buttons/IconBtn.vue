@@ -1,5 +1,5 @@
 <template>
-  <button @click.prevent="$emit('click')" :class="['icon-btn', btnColor]">
+  <button :class="['icon-btn', btnColor]">
     <slot />
   </button>
 </template>
@@ -7,7 +7,7 @@
 <script>
 export default {
   props: {
-    type: {
+    variant: {
       type: String,
       default: "danger",
       validator(value) {
@@ -15,8 +15,6 @@ export default {
       },
     },
   },
-
-  emits: ["click"],
 
   computed: {
     btnColor() {
@@ -26,7 +24,7 @@ export default {
         info: "text-gradient-500",
         succes: "text-accent-500",
       };
-      return colors[this.type];
+      return colors[this.variant];
     },
   },
 };

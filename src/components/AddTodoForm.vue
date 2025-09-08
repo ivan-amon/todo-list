@@ -13,8 +13,8 @@
     </div>
     <div class="mt-6 md:mt-0">
       <Btn
-        @click="$emit('submit-todo', todoTitle)"
-        type="submit"
+        @click.prevent="$emit('submit-todo', todoTitle)"
+        variant="submit"
       >
       Add to-do
       </Btn>

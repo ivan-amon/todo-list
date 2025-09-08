@@ -27,8 +27,8 @@
         </div>
       </template>
       <template #footer>
-        <Btn @click="updateTodo" type="submit"> Submit </Btn>
-        <Btn @click="editTodoForm.show = false" type="danger"> Close </Btn>
+        <Btn @click.prevent="updateTodo" variant="submit"> Submit </Btn>
+        <Btn @click.prevent="editTodoForm.show = false" variant="danger"> Close </Btn>
       </template>
     </Modal>
 

@@ -2,7 +2,7 @@
   <div v-if="show" class="md:mt-4">
     <div :class="['alert', alertColor]">
       <p>{{ message }}</p>
-      <IconBtn @click="$emit('close')" type="danger" size="small">
+      <IconBtn @click.prevent="$emit('close')" variant="danger" size="small">
         <i class="bi bi-x-circle-fill"></i>
       </IconBtn>
     </div>
