@@ -1,18 +1,18 @@
 <template>
-  <div v-if="show" class="modal">
+  <div ref="modal" class="modal">
     <div class="modal-content">
-
       <div class="modal-header">
-        <slot name="header"/>
+        <slot name="header" />
       </div>
 
-      <div class="modal-body flex flex-col px-6
-                  md:flex-row md:justify-center md:items-center">
-        <slot name="body"/>
+      <div
+        class="modal-body flex flex-col px-6 md:flex-row md:justify-center md:items-center"
+      >
+        <slot name="body" />
       </div>
 
       <div class="modal-footer">
-        <slot name="footer"/>
+        <slot name="footer" />
       </div>
     </div>
   </div>
@@ -26,6 +26,34 @@ export default {
       type: Boolean,
     },
   },
+
+  emits: ["close"],
+
+  data() {
+    return {
+      clickListener: (e) => {
+        if (e.target === this.$refs.modal) {
+          this.$emit("close");
+        }
+      },
+
+      closeOnEscListener: (e) => {
+        if(e.key === "Escape") {
+          this.$emit("close");
+        }
+      }
+    };
+  },
+
+  mounted() {
+    window.addEventListener("click", this.clickListener);
+    window.addEventListener("keydown", this.closeOnEscListener);
+  },
+
+  beforeUnmount() {
+    window.removeEventListener("click", this.clickListener);
+    window.removeEventListener("keydown", this.closeOnEscListener);
+  },
 };
 </script>
 
@@ -36,7 +64,6 @@ export default {
   @apply fixed z-[1] pt-40 left-0 top-0 w-full h-full overflow-auto bg-black/75;
 }
 
-
 .modal-content {
   @apply relative mx-auto p-0  w-4/5;
   @apply shadow-[0_4px_8px_rgba(0,0,0,0.2),0_6px_20px_rgba(0,0,0,0.19)];
@@ -44,13 +71,25 @@ export default {
 }
 
 @-webkit-keyframes animatetop {
-  from {top:-300px; opacity:0} 
-  to {top:0; opacity:1}
+  from {
+    top: -300px;
+    opacity: 0;
+  }
+  to {
+    top: 0;
+    opacity: 1;
+  }
 }
 
 @keyframes animatetop {
-  from {top:-300px; opacity:0}
-  to {top:0; opacity:1}
+  from {
+    top: -300px;
+    opacity: 0;
+  }
+  to {
+    top: 0;
+    opacity: 1;
+  }
 }
 
 .modal-header {
@@ -58,10 +97,10 @@ export default {
 }
 
 .modal-body {
-  @apply pb-8 pt-8 md:pt-16 bg-primary-400 px-6 md:px-4 gap-4 md:gap-10;
+  @apply pb-4 pt-5 md:pt-8 bg-primary-400 px-6 md:px-4 gap-4 md:gap-10;
 }
 
 .modal-footer {
-  @apply flex justify-center align-middle gap-10 pb-16 pt-4 px-4 bg-primary-400 rounded-b-lg;
+  @apply flex justify-center align-middle gap-10 pb-6 md:pb-8 pt-4 px-4 bg-primary-400 rounded-b-lg;
 }
 </style>

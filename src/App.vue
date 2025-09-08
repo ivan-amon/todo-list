@@ -10,7 +10,7 @@
       />
     </section>
 
-    <Modal :show="editTodoForm.show">
+    <Modal v-if="editTodoForm.show" @close="editTodoForm.show = false">
       <template #header>
         <h2 class="text-4xl text-gradient font-semibold inline-block">
           Edit to-do
