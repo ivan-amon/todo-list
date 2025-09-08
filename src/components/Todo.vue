@@ -38,11 +38,3 @@ export default {
   emits: ['remove-todo', 'edit-todo']
 }
 </script>
-
-<style>
-@reference "../assets/style.css";
-
-.todo {
-  @apply py-4 px-6 flex justify-between items-center bg-primary-400 rounded-md
-}
-</style>

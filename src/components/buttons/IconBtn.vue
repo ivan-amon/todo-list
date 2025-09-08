@@ -29,14 +29,3 @@ export default {
   },
 };
 </script>
-
-<style scoped>
-@reference "../../assets/style.css";
-
-.icon-btn {
-  @apply rounded-md text-xl outline-none cursor-pointer;
-}
-.icon-btn:hover, .icon-btn:focus {
-  @apply scale-120
-}
-</style>

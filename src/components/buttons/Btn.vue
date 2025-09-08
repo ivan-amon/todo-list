@@ -29,11 +29,3 @@ export default {
   },
 }
 </script>
-
-<style scoped>
-@reference "../../assets/style.css";
-
-.btn {
-  @apply rounded-md cursor-pointer py-3 px-8 2xl:px-12;
-}
-</style>

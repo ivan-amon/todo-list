@@ -50,12 +50,3 @@ export default {
 }
 </script>
 
-<style>
-@reference "../assets/style.css";
-
-.alert {
-  @apply flex justify-between items-center;
-  @apply cursor-default py-2 px-6 rounded-md bg-primary-400;
-}
-</style>
-
