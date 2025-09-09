@@ -3,10 +3,10 @@
   <main class="px-2 pt-5 md:pt-10 md:px-8 lg:px-20 xl:px-32 2xl:px-60">
     <section class="px-6">
       <Alert
-        :show="showAlert"
-        message="To-do title is required!"
-        type="danger"
-        @close="showAlert = false"
+        :show="alert.show"
+        :message="alert.message"
+        :type="alert.type"
+        @close="alert.show = false"
       />
     </section>
 
@@ -28,7 +28,9 @@
       </template>
       <template #footer>
         <Btn @click.prevent="updateTodo" variant="submit"> Submit </Btn>
-        <Btn @click.prevent="editTodoForm.show = false" variant="danger"> Close </Btn>
+        <Btn @click.prevent="editTodoForm.show = false" variant="danger">
+          Close
+        </Btn>
       </template>
     </Modal>
 
@@ -58,6 +60,7 @@ import Btn from "./components/buttons/Btn.vue";
 import Modal from "./components/Modal.vue";
 import Navbar from "./components/Navbar.vue";
 import Todo from "./components/Todo.vue";
+import axios from "axios";
 
 export default {
   components: { Alert, Navbar, AddTodoForm, Todo, Modal, Btn },
@@ -66,7 +69,11 @@ export default {
     return {
       todoTitle: "",
       todos: [],
-      showAlert: false,
+      alert: {
+        show: false,
+        message: "",
+        type: "danger"
+      },
       editTodoForm: {
         show: false,
         todo: {
@@ -77,21 +84,38 @@ export default {
     };
   },
 
+  created() {
+    this.fetchTodos();
+  },
+
   methods: {
-    addTodo(title) {
+    async fetchTodos() {
+      try {
+        const res = await axios.get("http://localhost:4600/todos");
+        this.todos = await res.data;
+      } catch(e) {
+        this.showAlert("Failed loading to-dos, check your internet connection");
+      }
+    },
+
+    showAlert(message, type = "danger") {
+      this.alert.show = true,
+      this.alert.message = message;
+      this.alert.type = type;
+    },
+
+    async addTodo(title) {
       if (title.trim() === "" || !title) {
-        this.showAlert = true;
+        this.showAlert("To-do title is required!", "danger")
         return;
       }
 
-      this.todos = this.todos.concat([
-        {
-          id: Math.floor(Math.random() * 1000),
-          title,
-        },
-      ]);
+      const res = await axios.post("http://localhost:4600/todos", {
+        title,
+      });
 
-      this.showAlert = false;
+      this.todos = this.todos.concat([res.data]);
+      this.alert.show = false;
     },
 
     showEditTodoForm(index) {
@@ -107,8 +131,9 @@ export default {
       this.editTodoForm.show = false;
     },
 
-    removeTodo(todoIndex) {
-      this.todos = this.todos.filter((todo, index) => index !== todoIndex);
+    async removeTodo(id) {
+      await axios.delete(`http://localhost:4600/todos/${id}`);
+      this.fetchTodos();
     },
   },
 };

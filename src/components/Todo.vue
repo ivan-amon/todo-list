@@ -5,7 +5,7 @@
       <IconBtn @click.prevent="$emit('edit-todo', index)" variant="info" size="small">
         <i class="bi bi-pencil-square"></i>
       </IconBtn>
-      <IconBtn @click.prevent="$emit('remove-todo', index)" variant="danger" size="small">
+      <IconBtn @click.prevent="$emit('remove-todo', id)" variant="danger" size="small">
         <i class="bi bi-trash"></i>
       </IconBtn>
     </div>
