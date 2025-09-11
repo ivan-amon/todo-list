@@ -96,7 +96,7 @@ export default {
     async fetchTodos() {
       this.isLoading = true;
       try {
-        const res = await axios.get("http://localhost:4600/todos");
+        const res = await axios.get("/api/todos");
         this.todos = await res.data;
       } catch(e) {
         this.showAlert("Failed loading to-dos");
@@ -117,7 +117,7 @@ export default {
       }
 
       this.isPostingTodo = true;
-      const res = await axios.post("http://localhost:4600/todos", {
+      const res = await axios.post("/api/todos", {
         title,
       });
 
