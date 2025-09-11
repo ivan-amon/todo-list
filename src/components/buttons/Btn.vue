@@ -1,5 +1,5 @@
 <template>
-  <button :class="['btn', btnVariant]">
+  <button :class="['btn flex justify-center items-center min-w-[137px] min-h-12', btnVariant]">
     <slot/>
   </button>
 </template>
@@ -29,3 +29,9 @@ export default {
   },
 }
 </script>
+
+<style scoped>
+.btn:disabled {
+  opacity: 75%;
+}
+</style>

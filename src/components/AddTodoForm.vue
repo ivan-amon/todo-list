@@ -12,23 +12,29 @@
       />
     </div>
     <div class="mt-6 md:mt-0">
-      <Btn
-        @click.prevent="$emit('submit-todo', todoTitle)"
-        variant="submit"
-      >
-      Add to-do
+      <Btn :disabled="isLoading" @click.prevent="$emit('submit-todo', todoTitle)" variant="submit">
+        <div v-if="isLoading">
+          <Spinner size="small" variant="light"/>
+        </div>
+        <span v-else>Add to-do</span>
       </Btn>
     </div>
   </form>
 </template>
 
 <script>
-
-import Btn from './buttons/Btn.vue';
+import Btn from "./buttons/Btn.vue";
+import Spinner from "./Spinner.vue";
 
 export default {
+  components: { Btn, Spinner },
 
-  components: { Btn },
+  props: {
+    isLoading: {
+      default: false,
+      type: Boolean,
+    },
+  },
 
   data() {
     return {
@@ -40,6 +46,6 @@ export default {
     addTodo() {},
   },
 
-  emits: ['submit-todo']
+  emits: ["submit-todo"],
 };
 </script>

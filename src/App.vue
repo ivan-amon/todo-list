@@ -35,11 +35,12 @@
     </Modal>
 
     <section class="px-6 pt-3 mb-12 mt-3 md:mt-4">
-      <AddTodoForm @submitTodo="addTodo" />
+      <AddTodoForm @submitTodo="addTodo" :isLoading="isPostingTodo" />
     </section>
 
     <section class="px-6 pb-3">
-      <ul class="gap-5 flex flex-col">
+      <Spinner v-if="isLoading" size="large" variant="dark"/>
+      <ul v-else class="gap-5 flex flex-col">
         <Todo
           v-for="(todo, index) in todos"
           :id="todo.id"
@@ -59,11 +60,12 @@ import Alert from "./components/Alert.vue";
 import Btn from "./components/buttons/Btn.vue";
 import Modal from "./components/Modal.vue";
 import Navbar from "./components/Navbar.vue";
+import Spinner from "./components/Spinner.vue";
 import Todo from "./components/Todo.vue";
 import axios from "axios";
 
 export default {
-  components: { Alert, Navbar, AddTodoForm, Todo, Modal, Btn },
+  components: { Alert, Navbar, AddTodoForm, Todo, Modal, Btn, Spinner },
 
   data() {
     return {
@@ -74,6 +76,8 @@ export default {
         message: "",
         type: "danger"
       },
+      isLoading: false,
+      isPostingTodo: false,
       editTodoForm: {
         show: false,
         todo: {
@@ -90,12 +94,14 @@ export default {
 
   methods: {
     async fetchTodos() {
+      this.isLoading = true;
       try {
         const res = await axios.get("http://localhost:4600/todos");
         this.todos = await res.data;
       } catch(e) {
-        this.showAlert("Failed loading to-dos, check your internet connection");
+        this.showAlert("Failed loading to-dos");
       }
+      this.isLoading = false;
     },
 
     showAlert(message, type = "danger") {
@@ -110,10 +116,12 @@ export default {
         return;
       }
 
+      this.isPostingTodo = true;
       const res = await axios.post("http://localhost:4600/todos", {
         title,
       });
 
+      this.isPostingTodo = false;
       this.todos = this.todos.concat([res.data]);
       this.alert.show = false;
     },
